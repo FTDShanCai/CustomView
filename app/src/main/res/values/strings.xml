@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">CustomView</string>
+    <string name="a_barrier_references_multiple_widgets_as_input_and_creates_a_virtual_guideline_based_on_the_most_extreme_widget_on_the_specified_side_for_example_a_left_barrier_will_align_to_the_left_of_all_the_referenced_views">A Barrier references multiple widgets as input, and creates a virtual guideline based on the most extreme widget on the specified side. For example, a left barrier will align to the left of all the referenced views.</string>
+</resources>

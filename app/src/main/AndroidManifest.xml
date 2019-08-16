@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.customview">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <application
+        android:name=".App"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name=".ui.SharedElement2Activity"></activity>
+        <activity android:name=".ui.SharedElement1Activity" />
+        <activity android:name=".ui.AdvActivity" />
+        <activity
+            android:name=".ui.NewViewActivity"
+            android:theme="@style/materialTheme" />
+        <activity android:name=".ui.MotionCoordinatorActivity" />
+        <activity android:name=".ui.SuiBianActivity" />
+        <activity android:name=".ui.View7Activity" />
+        <activity android:name=".ui.JustifyTextActivity" />
+        <activity android:name=".ui.View6Activity" />
+        <activity android:name=".ui.BehaviorActivity" />
+        <activity android:name=".ui.LithoActivity" />
+        <activity
+            android:name=".ui.TestActivity"
+            android:hardwareAccelerated="false" />
+        <activity android:name=".ui.MotionLayoutActivity" />
+        <activity android:name=".ui.GestureActivity" />
+        <activity android:name=".ui.PointViewActivity" />
+        <activity android:name=".ui.View5Activity" />
+        <activity android:name=".ui.View4Activity" />
+        <activity android:name=".ui.View3Activity" />
+        <activity android:name=".ui.View2Activity" />
+        <activity android:name=".ui.View1Activity" />
+        <activity android:name=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>
