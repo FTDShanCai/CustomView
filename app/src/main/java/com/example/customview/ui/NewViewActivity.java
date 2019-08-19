@@ -19,6 +19,7 @@ import com.google.android.material.circularreveal.CircularRevealCompat;
 import com.google.android.material.circularreveal.CircularRevealWidget;
 import com.google.android.material.circularreveal.cardview.CircularRevealCardView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.snackbar.Snackbar;
 
 public class NewViewActivity extends AppCompatActivity {
 
