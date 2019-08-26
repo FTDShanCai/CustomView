@@ -142,12 +142,31 @@
             android:text="一些新的view"
             android:textColor="#000"
             android:visibility="visible" />
+
         <TextView
             android:id="@+id/view16"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="15dp"
             android:text="SharedElement"
+            android:textColor="#000"
+            android:visibility="visible" />
+
+        <TextView
+            android:id="@+id/view17"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="15dp"
+            android:text="ConstraintLayout"
+            android:textColor="#000"
+            android:visibility="visible" />
+
+        <TextView
+            android:id="@+id/view18"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="15dp"
+            android:text="CoordinatorLayout"
             android:textColor="#000"
             android:visibility="visible" />
 

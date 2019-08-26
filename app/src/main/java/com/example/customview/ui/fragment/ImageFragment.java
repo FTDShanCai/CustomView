@@ -41,7 +41,7 @@ public class ImageFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_img, container, false);
         iv_img = view.findViewById(R.id.iv_img);
-        Glide.with(this).load(url).listener(new RequestListener<Drawable>() {
+        Glide.with(getActivity()).load(url).listener(new RequestListener<Drawable>() {
             @Override
             public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {
                 return false;

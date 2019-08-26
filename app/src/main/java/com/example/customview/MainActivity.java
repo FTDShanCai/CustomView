@@ -5,11 +5,13 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.example.customview.ui.BehaviorActivity;
+import com.example.customview.ui.ConstraintLayoutActivity;
 import com.example.customview.ui.GestureActivity;
 import com.example.customview.ui.JustifyTextActivity;
 import com.example.customview.ui.LithoActivity;
 import com.example.customview.ui.MotionCoordinatorActivity;
 import com.example.customview.ui.MotionLayoutActivity;
+import com.example.customview.ui.NewBehaviorActivity;
 import com.example.customview.ui.NewViewActivity;
 import com.example.customview.ui.PointViewActivity;
 import com.example.customview.ui.SharedElement1Activity;
@@ -131,6 +133,17 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(new Intent(MainActivity.this, SharedElement1Activity.class));
             }
         });
-
+        findViewById(R.id.view17).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, ConstraintLayoutActivity.class));
+            }
+        });
+        findViewById(R.id.view18).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, NewBehaviorActivity.class));
+            }
+        });
     }
 }

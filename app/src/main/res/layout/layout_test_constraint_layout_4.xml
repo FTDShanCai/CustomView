@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="20dp">
+
+    <androidx.constraintlayout.widget.Barrier
+        android:id="@+id/barrier"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:barrierDirection="right"
+        app:constraint_referenced_ids="lable_1,lable_2,lable_3" />
+
+
+    <TextView
+        android:id="@+id/lable_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:text="执行人:" />
+
+    <TextView
+        android:id="@+id/lable_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:text="开始时间:"
+        app:layout_constraintTop_toBottomOf="@id/lable_1" />
+
+    <TextView
+        android:id="@+id/lable_3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:text="备注:"
+        app:layout_constraintTop_toBottomOf="@id/lable_2" />
+
+    <TextView
+        android:id="@+id/value_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:text="张三"
+        app:layout_constraintLeft_toRightOf="@id/barrier" />
+
+    <TextView
+        android:id="@+id/value_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:text="2019年8月20日 11:26:59"
+        app:layout_constraintLeft_toRightOf="@id/barrier"
+        app:layout_constraintTop_toBottomOf="@id/value_1" />
+
+    <TextView
+        android:id="@+id/value_3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:text="无备注"
+        app:layout_constraintLeft_toRightOf="@id/barrier"
+        app:layout_constraintTop_toBottomOf="@id/value_2" />
+
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/group"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:constraint_referenced_ids="value_1,value_2" />
+
+
+    <androidx.constraintlayout.widget.Placeholder
+        android:layout_width="match_parent"
+        android:layout_height="50dp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
