@@ -6,9 +6,7 @@ import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.customview.R;
-
-import javax.microedition.khronos.egl.EGLConfig;
-import javax.microedition.khronos.opengles.GL10;
+import com.example.customview.ui.opengl.renderer.GL1Render;
 
 public class OpenGl1Activity extends AppCompatActivity {
     GLSurfaceView gl_surface_view;
@@ -18,25 +16,25 @@ public class OpenGl1Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_open_gl1);
         gl_surface_view = findViewById(R.id.gl_surface_view);
-        gl_surface_view.setRenderer(new GL1Render());
+        gl_surface_view.setEGLContextClientVersion(2);
+        gl_surface_view.setRenderer(new GL1Render(this));
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (gl_surface_view != null) {
+            gl_surface_view.onResume();
+        }
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        if (gl_surface_view != null) {
+            gl_surface_view.onPause();
+        }
     }
 
 
-    class GL1Render implements GLSurfaceView.Renderer{
-
-        @Override
-        public void onSurfaceCreated(GL10 gl, EGLConfig config) {
-
-        }
-
-        @Override
-        public void onSurfaceChanged(GL10 gl, int width, int height) {
-
-        }
-
-        @Override
-        public void onDrawFrame(GL10 gl) {
-
-        }
-    }
 }
