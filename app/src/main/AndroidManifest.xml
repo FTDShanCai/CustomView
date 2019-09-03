@@ -12,7 +12,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.NewBehaviorActivity"></activity>
+        <activity android:name=".ui.opengl.OpenGl1Activity"></activity>
+        <activity android:name=".ui.opengl.OpenGlActivity" />
+        <activity
+            android:name=".ui.ScrollingActivity"
+            android:label="@string/title_activity_scrolling"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".ui.NewBehaviorActivity" />
         <activity android:name=".ui.SharedElement2Activity" />
         <activity android:name=".ui.SharedElement1Activity" />
         <activity android:name=".ui.AdvActivity" />

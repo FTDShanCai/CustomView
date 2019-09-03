@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.customview.ui.BehaviorActivity;
 import com.example.customview.ui.ConstraintLayoutActivity;
 import com.example.customview.ui.GestureActivity;
@@ -22,8 +24,7 @@ import com.example.customview.ui.View3Activity;
 import com.example.customview.ui.View4Activity;
 import com.example.customview.ui.View5Activity;
 import com.example.customview.ui.View6Activity;
-
-import androidx.appcompat.app.AppCompatActivity;
+import com.example.customview.ui.opengl.OpenGlActivity;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -31,7 +32,13 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+                
+        findViewById(R.id.view0).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, OpenGlActivity.class));
+            }
+        });
         findViewById(R.id.view1).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
