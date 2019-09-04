@@ -3,6 +3,7 @@ package com.example.customview.ui.opengl.renderer;
 import android.content.Context;
 import android.opengl.GLES20;
 import android.opengl.GLSurfaceView;
+import android.opengl.Matrix;
 import android.util.Log;
 
 import com.example.customview.R;
@@ -20,19 +21,19 @@ import javax.microedition.khronos.opengles.GL10;
 public class GL1Render implements GLSurfaceView.Renderer {
 
     private float[] tableVerticesWithTriangles = {
-            0f, 0f, 1f, 1f, 1f,
-            -0.5f, -0.5f, 0.7f, 0.7f, 0.7f,
-            0.5f, -0.5f, 0.7f, 0.7f, 0.7f,
-            0.5f, 0.5f, 0.7f, 0.7f, 0.7f,
-            -0.5f, 0.5f, 0.7f, 0.7f, 0.7f,
-            -0.5f, -0.5f, 0.7f, 0.7f, 0.7f,
+            0f, 0f,  1f, 1f, 0f,
+            -0.5f, -0.9f, 0.7f, 0.7f, 0.7f,
+            0.5f, -0.9f, 0.7f, 0.7f, 0.7f,
+            0.5f, 0.9f, 0.7f, 0.7f, 0.7f,
+            -0.5f, 0.9f, 0.7f, 0.7f, 0.7f,
+            -0.5f, -0.9f, 0.7f, 0.7f, 0.7f,
 
             -0.5f, 0f, 1f, 0f, 0f,
             0.5f, 0f, 1f, 0f, 0f,
 
-            0f, 0.25f, 1f, 0f, 0f,
+            0f, 0.45f, 1f, 0f, 0f,
 
-            0f, -0.25f, 0f, 0f, 1f,
+            0f, -0.45f, 0f, 0f, 1f,
 
     };
 
@@ -50,10 +51,13 @@ public class GL1Render implements GLSurfaceView.Renderer {
     private static final int STRIDE =
             (POSITION_COMPONENT_COUNT + COLOR_COMPONENT_COUNT) * BYTES_PER_FLOAT;
 
-    private int vColorLocation, aPositionLocation, aColorLocation;
+    private int vColorLocation, aPositionLocation, aColorLocation, uMatrixLocation;
     private final String A_Color = "a_Color";
     private final String V_Color = "v_Color";
     private final String A_Position = "a_Position";
+    private final String U_Matrix = "u_Matrix";
+
+    private final float[] projectionMatrix = new float[16];
 
 
     public GL1Render(Context context) {
@@ -76,12 +80,11 @@ public class GL1Render implements GLSurfaceView.Renderer {
         vColorLocation = GLES20.glGetUniformLocation(progreamId, V_Color);
         aPositionLocation = GLES20.glGetAttribLocation(progreamId, A_Position);
         aColorLocation = GLES20.glGetAttribLocation(progreamId, A_Color);
+        uMatrixLocation = GLES20.glGetUniformLocation(progreamId, U_Matrix);
 
         vertexData.position(0);
-        GLES20.glVertexAttribPointer(aPositionLocation, POSITION_COMPONENT_COUNT, GLES20.GL_FLOAT, false, 0, vertexData);
-        GLES20.glEnableVertexAttribArray(aPositionLocation);
-
         GLES20.glVertexAttribPointer(aPositionLocation, POSITION_COMPONENT_COUNT, GLES20.GL_FLOAT, false, STRIDE, vertexData);
+        GLES20.glEnableVertexAttribArray(aPositionLocation);
         vertexData.position(POSITION_COMPONENT_COUNT);
         GLES20.glVertexAttribPointer(aColorLocation, COLOR_COMPONENT_COUNT, GLES20.GL_FLOAT, false, STRIDE, vertexData);
         GLES20.glEnableVertexAttribArray(aColorLocation);
@@ -89,11 +92,22 @@ public class GL1Render implements GLSurfaceView.Renderer {
 
     @Override
     public void onSurfaceChanged(GL10 gl, int width, int height) {
+
         GLES20.glViewport(0, 0, width, height);
+        final float aspectRatio = width > height ? (float) width / (float) height : (float) height / (float) width;
+        Log.d("ftd", "aspectRatio:" + aspectRatio);
+
+        if (width > height) {
+            Matrix.orthoM(projectionMatrix, 0, -aspectRatio, aspectRatio, -1f, 1f, -1f, 1f);
+        } else {
+            Matrix.orthoM(projectionMatrix, 0, -1f, 1f, -aspectRatio, aspectRatio, -1.0f, 1.0f);
+        }
+
     }
 
     @Override
     public void onDrawFrame(GL10 gl) {
+        GLES20.glUniformMatrix4fv(uMatrixLocation, 1, false, projectionMatrix, 0);
         GLES20.glDrawArrays(GLES20.GL_TRIANGLE_FAN, 0, 6);
         GLES20.glDrawArrays(GLES20.GL_LINES, 6, 2);
         GLES20.glDrawArrays(GLES20.GL_POINTS, 8, 1);
