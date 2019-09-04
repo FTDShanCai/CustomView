@@ -20,20 +20,19 @@ import javax.microedition.khronos.opengles.GL10;
 public class GL1Render implements GLSurfaceView.Renderer {
 
     private float[] tableVerticesWithTriangles = {
-            0f, 0f,
-            9f, 14f,
-            0f, 14f,
+            0f, 0f, 1f, 1f, 1f,
+            -0.5f, -0.5f, 0.7f, 0.7f, 0.7f,
+            0.5f, -0.5f, 0.7f, 0.7f, 0.7f,
+            0.5f, 0.5f, 0.7f, 0.7f, 0.7f,
+            -0.5f, 0.5f, 0.7f, 0.7f, 0.7f,
+            -0.5f, -0.5f, 0.7f, 0.7f, 0.7f,
 
-            0f, 0f,
-            9f, 0f,
-            9f, 14f,
+            -0.5f, 0f, 1f, 0f, 0f,
+            0.5f, 0f, 1f, 0f, 0f,
 
-            0f, 7f,
-            9f, 7f,
+            0f, 0.25f, 1f, 0f, 0f,
 
-            4.5f, 2f,
-
-            4.5f, 12f
+            0f, -0.25f, 0f, 0f, 1f,
 
     };
 
@@ -43,8 +42,19 @@ public class GL1Render implements GLSurfaceView.Renderer {
 
     private int vertexShader;
     private int fragmentShader;
-
     private int progreamId;
+
+    ////////////////////////////////////////////////////
+    private static final int POSITION_COMPONENT_COUNT = 2;
+    private static final int COLOR_COMPONENT_COUNT = 3;
+    private static final int STRIDE =
+            (POSITION_COMPONENT_COUNT + COLOR_COMPONENT_COUNT) * BYTES_PER_FLOAT;
+
+    private int vColorLocation, aPositionLocation, aColorLocation;
+    private final String A_Color = "a_Color";
+    private final String V_Color = "v_Color";
+    private final String A_Position = "a_Position";
+
 
     public GL1Render(Context context) {
         this.context = context;
@@ -53,16 +63,28 @@ public class GL1Render implements GLSurfaceView.Renderer {
                 .order(ByteOrder.nativeOrder())
                 .asFloatBuffer();
         vertexData.put(tableVerticesWithTriangles);
-
-
     }
 
     @Override
     public void onSurfaceCreated(GL10 gl, EGLConfig config) {
-//        GLES20.glClearColor(1.0f, 1.0f, 0.0f, 0.0f);
+        GLES20.glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
         vertexShader = complieVertexShader(readTextFileFromResource(context, R.raw.simple_vertex_shader));
         fragmentShader = complieFragmentShader(readTextFileFromResource(context, R.raw.simple_fragment_shader));
         progreamId = linkProgram(vertexShader, fragmentShader);
+        GLES20.glUseProgram(progreamId);
+
+        vColorLocation = GLES20.glGetUniformLocation(progreamId, V_Color);
+        aPositionLocation = GLES20.glGetAttribLocation(progreamId, A_Position);
+        aColorLocation = GLES20.glGetAttribLocation(progreamId, A_Color);
+
+        vertexData.position(0);
+        GLES20.glVertexAttribPointer(aPositionLocation, POSITION_COMPONENT_COUNT, GLES20.GL_FLOAT, false, 0, vertexData);
+        GLES20.glEnableVertexAttribArray(aPositionLocation);
+
+        GLES20.glVertexAttribPointer(aPositionLocation, POSITION_COMPONENT_COUNT, GLES20.GL_FLOAT, false, STRIDE, vertexData);
+        vertexData.position(POSITION_COMPONENT_COUNT);
+        GLES20.glVertexAttribPointer(aColorLocation, COLOR_COMPONENT_COUNT, GLES20.GL_FLOAT, false, STRIDE, vertexData);
+        GLES20.glEnableVertexAttribArray(aColorLocation);
     }
 
     @Override
@@ -72,7 +94,10 @@ public class GL1Render implements GLSurfaceView.Renderer {
 
     @Override
     public void onDrawFrame(GL10 gl) {
-        GLES20.glClear(GLES20.GL_COLOR_BUFFER_BIT);
+        GLES20.glDrawArrays(GLES20.GL_TRIANGLE_FAN, 0, 6);
+        GLES20.glDrawArrays(GLES20.GL_LINES, 6, 2);
+        GLES20.glDrawArrays(GLES20.GL_POINTS, 8, 1);
+        GLES20.glDrawArrays(GLES20.GL_POINTS, 9, 1);
     }
 
     public static String readTextFileFromResource(Context context, int resourceId) {
@@ -86,11 +111,12 @@ public class GL1Render implements GLSurfaceView.Renderer {
             String nextLine;
             while ((nextLine = bufferedReader.readLine()) != null) {
                 body.append(nextLine);
-                body.append("/n");
+//                body.append("/n");
             }
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
+        Log.d("ftd", body.toString());
         return body.toString();
     }
 
@@ -109,11 +135,13 @@ public class GL1Render implements GLSurfaceView.Renderer {
             return 0;
         }
         GLES20.glShaderSource(shaderObjectId, shaderCode);
+        GLES20.glCompileShader(shaderObjectId);
         final int[] compileStatus = new int[1];
         GLES20.glGetShaderiv(shaderObjectId, GLES20.GL_COMPILE_STATUS, compileStatus, 0);
         if (compileStatus[0] == 0) {
-            GLES20.glDeleteShader(shaderObjectId);
             Log.e("ftd", "createShader failed");
+            Log.e("ftd", "glGetShaderInfoLog: " + GLES20.glGetShaderInfoLog(shaderObjectId));
+            GLES20.glDeleteShader(shaderObjectId);
             return 0;
         }
 
