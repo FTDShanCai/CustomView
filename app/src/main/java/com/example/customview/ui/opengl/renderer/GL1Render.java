@@ -7,6 +7,7 @@ import android.opengl.Matrix;
 import android.util.Log;
 
 import com.example.customview.R;
+import com.example.customview.ui.opengl.util.MatrixHelper;
 
 import java.io.BufferedReader;
 import java.io.InputStream;
@@ -20,8 +21,24 @@ import javax.microedition.khronos.opengles.GL10;
 
 public class GL1Render implements GLSurfaceView.Renderer {
 
+//    private float[] tableVerticesWithTriangles = {
+//            0f, 0f, 0f, 0f, 1f, 1f, 0f,
+//            -0.5f, -0.9f, 0f, 0f, 0.7f, 0.7f, 0.7f,
+//            0.5f, -0.9f, 0f, 0f, 0.7f, 0.7f, 0.7f,
+//            0.5f, 0.9f, 0f, 0f, 0.7f, 0.7f, 0.7f,
+//            -0.5f, 0.9f, 0f, 0f, 0.7f, 0.7f, 0.7f,
+//            -0.5f, -0.9f, 0f, 0f, 0.7f, 0.7f, 0.7f,
+//
+//            -0.5f, 0f, 0f, 0f, 1f, 0f, 0f,
+//            0.5f, 0f, 0f, 0f, 1f, 0f, 0f,
+//
+//            0f, 0.45f, 0f, 0f, 1f, 0f, 0f,
+//            0f, -0.45f, 0f, 0f, 0f, 0f, 1f,
+//
+//    };
+
     private float[] tableVerticesWithTriangles = {
-            0f, 0f,  1f, 1f, 0f,
+            0f, 0f, 1f, 1f, 0f,
             -0.5f, -0.9f, 0.7f, 0.7f, 0.7f,
             0.5f, -0.9f, 0.7f, 0.7f, 0.7f,
             0.5f, 0.9f, 0.7f, 0.7f, 0.7f,
@@ -32,10 +49,10 @@ public class GL1Render implements GLSurfaceView.Renderer {
             0.5f, 0f, 1f, 0f, 0f,
 
             0f, 0.45f, 1f, 0f, 0f,
-
             0f, -0.45f, 0f, 0f, 1f,
 
     };
+
 
     private static final int BYTES_PER_FLOAT = 4;
     private final FloatBuffer vertexData;
@@ -59,6 +76,7 @@ public class GL1Render implements GLSurfaceView.Renderer {
 
     private final float[] projectionMatrix = new float[16];
 
+    private final float[] modelMatrix = new float[16];
 
     public GL1Render(Context context) {
         this.context = context;
@@ -92,17 +110,24 @@ public class GL1Render implements GLSurfaceView.Renderer {
 
     @Override
     public void onSurfaceChanged(GL10 gl, int width, int height) {
-
         GLES20.glViewport(0, 0, width, height);
-        final float aspectRatio = width > height ? (float) width / (float) height : (float) height / (float) width;
-        Log.d("ftd", "aspectRatio:" + aspectRatio);
+//        final float aspectRatio = width > height ? (float) width / (float) height : (float) height / (float) width;
+//        Log.d("ftd", "aspectRatio:" + aspectRatio);
 
-        if (width > height) {
-            Matrix.orthoM(projectionMatrix, 0, -aspectRatio, aspectRatio, -1f, 1f, -1f, 1f);
-        } else {
-            Matrix.orthoM(projectionMatrix, 0, -1f, 1f, -aspectRatio, aspectRatio, -1.0f, 1.0f);
-        }
+//        if (width > height) {
+//            Matrix.orthoM(projectionMatrix, 0, -aspectRatio, aspectRatio, -1f, 1f, -1f, 1f);
+//        } else {
+//            Matrix.orthoM(projectionMatrix, 0, -1f, 1f, -aspectRatio, aspectRatio, -1f, 1f);
+//        }
 
+        MatrixHelper.perspectiveM(projectionMatrix, 45, (float) width / (float) height, 1f, 10f);
+        Matrix.setIdentityM(modelMatrix, 0);//创建单位矩阵
+        Matrix.translateM(modelMatrix, 0, 0f, 0f, -3f);//矩阵Z 轴移动-3f距离
+        Matrix.rotateM(modelMatrix, 0, -60f, 1f, 0, 0);
+
+        final float[] temp = new float[16];
+        Matrix.multiplyMM(temp, 0, projectionMatrix, 0, modelMatrix, 0);
+        System.arraycopy(temp, 0, projectionMatrix, 0, temp.length);
     }
 
     @Override
@@ -125,7 +150,6 @@ public class GL1Render implements GLSurfaceView.Renderer {
             String nextLine;
             while ((nextLine = bufferedReader.readLine()) != null) {
                 body.append(nextLine);
-//                body.append("/n");
             }
         } catch (Exception e) {
             throw new RuntimeException(e);
@@ -183,5 +207,6 @@ public class GL1Render implements GLSurfaceView.Renderer {
 
         return programId;
     }
+
 
 }
