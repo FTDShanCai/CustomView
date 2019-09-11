@@ -117,13 +117,13 @@ public class GL1Render implements GLSurfaceView.Renderer {
 //        if (width > height) {
 //            Matrix.orthoM(projectionMatrix, 0, -aspectRatio, aspectRatio, -1f, 1f, -1f, 1f);
 //        } else {
-//            Matrix.orthoM(projectionMatrix, 0, -1f, 1f, -aspectRatio, aspectRatio, -1f, 1f);
+//            Matrix.orthoM(projectionMatrix, 0, -1f, 1f, -aspectRatio, aspectRatio, -1f, 1 f);
 //        }
 
         MatrixHelper.perspectiveM(projectionMatrix, 45, (float) width / (float) height, 1f, 10f);
         Matrix.setIdentityM(modelMatrix, 0);//创建单位矩阵
-        Matrix.translateM(modelMatrix, 0, 0f, 0f, -3f);//矩阵Z 轴移动-3f距离
-        Matrix.rotateM(modelMatrix, 0, -60f, 1f, 0, 0);
+        Matrix.translateM(modelMatrix, 0, 0f, 0f, -2.5f);//矩阵Z 轴移动-3f距离
+        Matrix.rotateM(modelMatrix, 0, -60f, 1f, 0f, 0);
 
         final float[] temp = new float[16];
         Matrix.multiplyMM(temp, 0, projectionMatrix, 0, modelMatrix, 0);
@@ -154,7 +154,6 @@ public class GL1Render implements GLSurfaceView.Renderer {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
-        Log.d("ftd", body.toString());
         return body.toString();
     }
 
