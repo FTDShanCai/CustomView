@@ -60,10 +60,9 @@
         android:background="@color/colorPrimaryDark"
         android:padding="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHeight_percent="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/view4"
-        app:layout_constraintWidth_percent="0.7" />
+        app:layout_constraintWidth_percent="0.2" />
 
     <TextView
         android:id="@+id/view6"

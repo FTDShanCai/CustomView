@@ -18,12 +18,13 @@ import android.graphics.Shader;
 import android.graphics.Typeface;
 import android.text.TextUtils;
 import android.util.AttributeSet;
-import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.view.NestedScrollingParent;
 
 import com.example.customview.AbilityBean;
 import com.example.customview.R;
@@ -39,7 +40,7 @@ import java.util.ArrayList;
  * version：1.0
  * <p>description：   蛛网（多项值）分析图           </p>
  */
-public class AbilityMapView extends View {
+public class AbilityMapView extends View implements NestedScrollingParent {
     private final static int NUMBER_OF_EDGES = 5;
     private final static float DEFAULT_TEXTSIZE = 14F;
     private final static int POLYGON_COUNTS = 5;
@@ -73,6 +74,45 @@ public class AbilityMapView extends View {
 
     public void setCreditInfoLableListener(CreditInfoLableListener creditInfoLableListener) {
         this.creditInfoLableListener = creditInfoLableListener;
+    }
+
+    @Override
+    public boolean onStartNestedScroll(@NonNull View child, @NonNull View target, int axes) {
+        return false;
+    }
+
+    @Override
+    public void onNestedScrollAccepted(@NonNull View child, @NonNull View target, int axes) {
+        Log.d("ftd", "onNestedScrollAccepted");
+    }
+    @Override
+    public void onStopNestedScroll(@NonNull View target) {
+
+    }
+
+    @Override
+    public void onNestedScroll(@NonNull View target, int dxConsumed, int dyConsumed, int dxUnconsumed, int dyUnconsumed) {
+
+    }
+
+    @Override
+    public void onNestedPreScroll(@NonNull View target, int dx, int dy, @NonNull int[] consumed) {
+
+    }
+
+    @Override
+    public boolean onNestedFling(@NonNull View target, float velocityX, float velocityY, boolean consumed) {
+        return false;
+    }
+
+    @Override
+    public boolean onNestedPreFling(@NonNull View target, float velocityX, float velocityY) {
+        return false;
+    }
+
+    @Override
+    public int getNestedScrollAxes() {
+        return 0;
     }
 
     public interface CreditInfoLableListener {
@@ -128,6 +168,7 @@ public class AbilityMapView extends View {
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+        Log.d("ftd", "onMeasure");
         viewWidth = MeasureSpec.getSize(widthMeasureSpec);
         viewHeight = MeasureSpec.getSize(heightMeasureSpec);
         if (view_bg != null) {
@@ -709,4 +750,15 @@ public class AbilityMapView extends View {
         invalidate();
     }
 
+    @Override
+    protected void onFinishInflate() {
+        super.onFinishInflate();
+        Log.d("ftd", "onFinishInflate");
+    }
+
+    @Override
+    protected void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        Log.d("ftd", "onAttachedToWindow");
+    }
 }

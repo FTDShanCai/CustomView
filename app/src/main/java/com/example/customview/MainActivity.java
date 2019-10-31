@@ -3,9 +3,12 @@ package com.example.customview;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.WindowManager;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.widget.NestedScrollView;
 
+import com.example.customview.test.AActivity;
 import com.example.customview.ui.BehaviorActivity;
 import com.example.customview.ui.ConstraintLayoutActivity;
 import com.example.customview.ui.GestureActivity;
@@ -24,15 +27,31 @@ import com.example.customview.ui.View3Activity;
 import com.example.customview.ui.View4Activity;
 import com.example.customview.ui.View5Activity;
 import com.example.customview.ui.View6Activity;
+import com.example.customview.ui.View7Activity;
+import com.example.customview.ui.View8Activity;
 import com.example.customview.ui.opengl.OpenGlActivity;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class MainActivity extends AppCompatActivity {
+
+    NestedScrollView scroll_view;
+    FloatingActionButton fab;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_main);
-                
+        scroll_view = findViewById(R.id.scroll_view);
+        fab = findViewById(R.id.fab);
+
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, AActivity.class));
+            }
+        });
+
         findViewById(R.id.view0).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -150,6 +169,19 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this, NewBehaviorActivity.class));
+            }
+        });
+        findViewById(R.id.view19).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, View7Activity.class));
+            }
+        });
+
+        findViewById(R.id.view20).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, View8Activity.class));
             }
         });
     }

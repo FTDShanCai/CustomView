@@ -1,15 +1,18 @@
 package com.example.customview.ui;
 
-import androidx.appcompat.app.AppCompatActivity;
-
+import android.content.ComponentName;
+import android.content.Intent;
+import android.content.ServiceConnection;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
+import android.os.IBinder;
+import android.util.Log;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.customview.AbilityBean;
 import com.example.customview.R;
+import com.example.customview.service.MyService;
 import com.example.customview.view.AbilityMapView;
-import com.example.customview.view.CreditMainView;
 
 import java.util.ArrayList;
 
@@ -29,9 +32,27 @@ public class TestActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Log.d("ftd", "onCreate");
         setContentView(R.layout.activity_test);
+        Log.d("ftd", "setContentView");
         map_view = findViewById(R.id.map_view);
         init();
+
+
+        Intent intent = new Intent(this, MyService.class);
+        intent.putExtra("name", "aac");
+        bindService(intent, new ServiceConnection() {
+            @Override
+            public void onServiceConnected(ComponentName name, IBinder service) {
+                MyService.MyBinder myBinder = (MyService.MyBinder) service;
+
+            }
+
+            @Override
+            public void onServiceDisconnected(ComponentName name) {
+
+            }
+        }, BIND_AUTO_CREATE);
 
     }
 

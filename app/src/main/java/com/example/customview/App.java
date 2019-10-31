@@ -1,6 +1,7 @@
 package com.example.customview;
 
 import android.app.Application;
+import android.util.Log;
 
 import com.facebook.soloader.SoLoader;
 
@@ -14,5 +15,6 @@ public class App extends Application {
     public void onCreate() {
         super.onCreate();
         SoLoader.init(this, false);
+        Log.d("ftd", "Application  onCreate");
     }
 }
