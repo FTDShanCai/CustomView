@@ -7,8 +7,10 @@ import com.example.customview.litho.ListItem;
 import com.example.customview.litho.RecyclerItem;
 import com.facebook.litho.ComponentContext;
 import com.facebook.litho.LithoView;
+import com.facebook.litho.widget.LithoViewFactory;
 import com.facebook.litho.widget.RecyclerBinder;
 import com.facebook.litho.widget.StaggeredGridLayoutInfo;
+import com.facebook.litho.widget.Text;
 
 import java.util.Random;
 
@@ -29,9 +31,10 @@ public class LithoActivity extends AppCompatActivity {
                 .build(context);
         for (int i = 0; i < 10; i++) {
             Random random = new Random();
-            recyclerBinder.insertItemAt(i * 2, ListItem.create(context).color(Color.YELLOW).mheight(random.nextInt(300)).build());
+            recyclerBinder.insertItemAt(i * 2, ListItem.create(context).contentDescription("123123123123").color(Color.YELLOW).mheight(random.nextInt(300)).build());
             recyclerBinder.insertItemAt(i * 2 + 1, ListItem.create(context).color(Color.BLUE).mheight(random.nextInt(300)).build());
         }
-        setContentView(LithoView.create(context, RecyclerItem.create(context).recyclerBinder(recyclerBinder).build()));
+        setContentView(LithoView.create(context,  Text.create(context).text("你好啊").textSizeSp(20).build()));
+//        setContentView(LithoView.create(context, RecyclerItem.create(context).recyclerBinder(recyclerBinder).build()));
     }
 }

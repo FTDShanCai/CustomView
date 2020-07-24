@@ -21,7 +21,9 @@
         <activity android:name=".test.AActivity" />
         <activity android:name=".ui.View8Activity" />
         <activity android:name=".mvp.MvpActivity" />
-        <activity android:name=".ui.opengl.OpenGl1Activity" />
+        <activity android:name=".ui.opengl.OpenGl1Activity">
+
+        </activity>
         <activity android:name=".ui.opengl.OpenGlActivity" />
         <activity
             android:name=".ui.ScrollingActivity"

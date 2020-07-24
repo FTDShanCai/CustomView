@@ -21,16 +21,18 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation 'androidx.appcompat:appcompat:1.1.0-alpha03'
-    implementation 'androidx.constraintlayout:constraintlayout:2.0.0-alpha3'
+    implementation 'androidx.appcompat:appcompat:1.3.0-alpha01'
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.0-beta8'
     implementation 'com.google.android:flexbox:0.2.6'
     implementation 'androidx.multidex:multidex:2.0.1'
 
+    // SoLoader
+    implementation 'com.facebook.soloader:soloader:0.5.1'
     // Litho
     implementation 'com.facebook.litho:litho-core:0.21.0'
     implementation 'com.facebook.litho:litho-widget:0.21.0'
     compileOnly 'com.facebook.litho:litho-annotations:0.21.0'
-    implementation 'com.google.android.material:material:1.0.0'
+    implementation 'com.google.android.material:material:1.1.0'
     annotationProcessor 'com.facebook.litho:litho-processor:0.21.0'
     implementation 'com.scwang.smartrefresh:SmartRefreshLayout:1.1.0-andx-4'
 //    implementation 'com.yalantis:starwarstiles:0.1.0'
@@ -39,5 +41,5 @@ dependencies {
     annotationProcessor 'com.github.bumptech.glide:compiler:4.9.0'
     implementation 'org.greenrobot:eventbus:3.1.1'
 
-    implementation 'androidx.lifecycle:lifecycle-extensions:2.0.0'
+    implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
 }

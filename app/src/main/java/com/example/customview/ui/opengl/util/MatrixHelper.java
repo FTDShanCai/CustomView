@@ -2,6 +2,14 @@ package com.example.customview.ui.opengl.util;
 
 public class MatrixHelper {
 
+    /**
+     * 投影矩阵公式方法
+     * @param m
+     * @param yFovInDegrees y方向的视角
+     * @param aspect 纵横比
+     * @param n  近剪裁平面到原点的距离
+     * @param f  远剪裁平面到原点的距离
+     */
     public static void perspectiveM(float[] m, float yFovInDegrees, float aspect, float n, float f) {
         final float angleInRadians = (float) (yFovInDegrees * Math.PI / 180.0);
 

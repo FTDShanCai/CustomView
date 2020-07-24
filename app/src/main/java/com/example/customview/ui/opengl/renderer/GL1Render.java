@@ -99,7 +99,8 @@ public class GL1Render implements GLSurfaceView.Renderer {
         aPositionLocation = GLES20.glGetAttribLocation(progreamId, A_Position);
         aColorLocation = GLES20.glGetAttribLocation(progreamId, A_Color);
         uMatrixLocation = GLES20.glGetUniformLocation(progreamId, U_Matrix);
-
+        Log.d("ftd", "aPositionLocation:" + aPositionLocation);
+        Log.d("ftd", "aColorLocation:" + aColorLocation);
         vertexData.position(0);
         GLES20.glVertexAttribPointer(aPositionLocation, POSITION_COMPONENT_COUNT, GLES20.GL_FLOAT, false, STRIDE, vertexData);
         GLES20.glEnableVertexAttribArray(aPositionLocation);
@@ -119,10 +120,9 @@ public class GL1Render implements GLSurfaceView.Renderer {
 //        } else {
 //            Matrix.orthoM(projectionMatrix, 0, -1f, 1f, -aspectRatio, aspectRatio, -1f, 1 f);
 //        }
-
-        MatrixHelper.perspectiveM(projectionMatrix, 45, (float) width / (float) height, 1f, 10f);
+        Matrix.perspectiveM(projectionMatrix, 0, 80, (float) width / (float) height, 1f, 10f);//投影矩阵
         Matrix.setIdentityM(modelMatrix, 0);//创建单位矩阵
-        Matrix.translateM(modelMatrix, 0, 0f, 0f, -2.5f);//矩阵Z 轴移动-3f距离
+        Matrix.translateM(modelMatrix, 0, 0f, 0f, -2f);//矩阵Z 轴移动-3f距离
         Matrix.rotateM(modelMatrix, 0, -60f, 1f, 0f, 0);
 
         final float[] temp = new float[16];
@@ -179,7 +179,7 @@ public class GL1Render implements GLSurfaceView.Renderer {
             Log.e("ftd", "createShader failed");
             Log.e("ftd", "glGetShaderInfoLog: " + GLES20.glGetShaderInfoLog(shaderObjectId));
             GLES20.glDeleteShader(shaderObjectId);
-            return 0;
+            return GLES20.GL_FALSE;
         }
 
 
