@@ -90,7 +90,7 @@ public class ParticleSmasher extends View {
     public Bitmap createBitmapFromView(View view) {
 
         view.clearFocus();
-        Bitmap bitmap = Bitmap.createBitmap(view.getWidth(), view.getHeight(), Bitmap.Config.ARGB_8888);
+        Bitmap bitmap = Bitmap.createBitmap(view.getWidth(), view.getHeight(), Bitmap.Config.RGB_565);
         if (bitmap != null) {
             synchronized (mCanvas) {
                 Canvas canvas = mCanvas;

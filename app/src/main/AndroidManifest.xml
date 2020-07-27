@@ -16,14 +16,22 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".motionlayout.Motion2Activity"></activity>
+        <activity android:name=".motionlayout.Motion1Activity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".NewActivity" />
+        <activity android:name=".WelcomeActivity"></activity>
         <activity android:name=".test.CActivity" />
         <activity android:name=".test.BActivity" />
         <activity android:name=".test.AActivity" />
         <activity android:name=".ui.View8Activity" />
         <activity android:name=".mvp.MvpActivity" />
-        <activity android:name=".ui.opengl.OpenGl1Activity">
-
-        </activity>
+        <activity android:name=".ui.opengl.OpenGl1Activity" />
         <activity android:name=".ui.opengl.OpenGlActivity" />
         <activity
             android:name=".ui.ScrollingActivity"
@@ -56,13 +64,7 @@
         <activity android:name=".ui.View1Activity" />
         <activity
             android:name=".MainActivity"
-            android:launchMode="singleTask">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:launchMode="singleTask"></activity>
         <activity android:name=".ui.ConstraintLayoutActivity" />
     </application>
 

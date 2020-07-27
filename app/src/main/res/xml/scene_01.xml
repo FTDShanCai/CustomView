@@ -16,8 +16,8 @@
             <KeyPosition
                 motion:framePosition="50"
                 motion:keyPositionType="parentRelative"
-                motion:percentY="0.25"
-                motion:motionTarget="@id/mView" />
+                motion:motionTarget="@id/mView"
+                motion:percentY="0.25" />
 
             <KeyAttribute
                 android:elevation="10dp"
