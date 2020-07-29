@@ -95,4 +95,5 @@
     <string name="action_settings">Settings</string>
     <string name="str_old_version">旧版本</string>
     <string name="str_new_version">2020年7月27日版本</string>
+    <string name="lottie">lottie</string>
 </resources>
