@@ -16,13 +16,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".lottie.LottieActivity"></activity>
+        <activity android:name=".anim.anim.Anim1Activity"></activity>
+        <activity android:name=".anim.AnimMainActivity" />
+        <activity android:name=".lottie.LottieActivity" />
         <activity android:name=".motionlayout.Motion2Activity" />
-        <activity android:name=".motionlayout.Motion1Activity">
-
-        </activity>
+        <activity android:name=".motionlayout.Motion1Activity" />
         <activity android:name=".NewActivity" />
-        <activity android:name=".WelcomeActivity" >
+        <activity android:name=".WelcomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
