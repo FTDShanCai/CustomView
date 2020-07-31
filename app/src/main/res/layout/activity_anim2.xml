@@ -22,5 +22,20 @@
         android:text="start"
         app:layout_constraintBottom_toBottomOf="parent" />
 
+    <Button
+        android:id="@+id/btn_intercept"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="path 贝塞尔曲线"
+        app:layout_constraintBottom_toTopOf="@id/btn_start" />
+
+
+    <Button
+        android:id="@+id/btn_reset"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="reset"
+        app:layout_constraintBottom_toTopOf="@id/btn_intercept" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

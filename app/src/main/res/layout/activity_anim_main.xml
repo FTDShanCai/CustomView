@@ -39,6 +39,14 @@
             android:textColor="#000"
             android:text="fragment切换动画自定义"
             android:textSize="20sp" />
+        <TextView
+            android:id="@+id/anim_4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="20dp"
+            android:textColor="#000"
+            android:text="揭露动画"
+            android:textSize="20sp" />
 
     </LinearLayout>
 

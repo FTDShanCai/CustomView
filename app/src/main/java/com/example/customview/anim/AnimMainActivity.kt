@@ -8,6 +8,7 @@ import com.example.customview.R
 import com.example.customview.anim.anim.Anim1Activity
 import com.example.customview.anim.anim.Anim2Activity
 import com.example.customview.anim.anim.Anim3Activity
+import com.example.customview.anim.anim.Anim4Activity
 
 class AnimMainActivity : AppCompatActivity() {
 
@@ -19,6 +20,9 @@ class AnimMainActivity : AppCompatActivity() {
     }
     val anim3 by lazy {
         findViewById<TextView>(R.id.anim_3)
+    }
+    val anim4 by lazy {
+        findViewById<TextView>(R.id.anim_4)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -37,6 +41,11 @@ class AnimMainActivity : AppCompatActivity() {
         anim3.apply {
             setOnClickListener {
                 startActivity(Intent(context, Anim3Activity::class.java))
+            }
+        }
+        anim4.apply {
+            setOnClickListener {
+                startActivity(Intent(context, Anim4Activity::class.java))
             }
         }
     }
