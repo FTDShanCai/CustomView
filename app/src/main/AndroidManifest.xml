@@ -16,7 +16,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".anim.anim.Anim1Activity"></activity>
+        <activity android:name=".anim.anim.Anim3Activity"></activity>
+        <activity android:name=".anim.anim.Anim2Activity" />
+        <activity android:name=".anim.anim.Anim1Activity" />
         <activity android:name=".anim.AnimMainActivity" />
         <activity android:name=".lottie.LottieActivity" />
         <activity android:name=".motionlayout.Motion2Activity" />

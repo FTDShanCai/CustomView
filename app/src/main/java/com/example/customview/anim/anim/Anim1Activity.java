@@ -18,19 +18,21 @@ import com.example.customview.R;
  */
 public class Anim1Activity extends AppCompatActivity {
 
-    int animTime = getResources().getInteger(android.R.integer.config_mediumAnimTime);
+    int animTime = 3000;
     private ProgressBar progressBar;
     private View contentView;
+    private ViewPropertyAnimator animContentView, animProgressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_anim1);
 
-        Button btn = findViewById(R.id.btn);
+        Button btn = findViewById(R.id.btn_show);
         contentView = findViewById(R.id.view);
         progressBar = findViewById(R.id.progress);
         contentView.setAlpha(0);
+
 
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -41,12 +43,11 @@ public class Anim1Activity extends AppCompatActivity {
     }
 
     private void startAnim() {
-        contentView.animate()
+        animContentView = contentView.animate()
                 .alpha(1)
                 .setDuration(animTime)
-                .setListener(null)
-                .start();
-        progressBar.animate()
+                .setListener(null);
+        animProgressBar = progressBar.animate()
                 .alpha(0)
                 .setDuration(animTime)
                 .setListener(new AnimatorListenerAdapter() {
@@ -55,6 +56,17 @@ public class Anim1Activity extends AppCompatActivity {
                         super.onAnimationEnd(animation);
                         progressBar.setVisibility(View.GONE);
                     }
-                }).start();
+                });
+    }
+
+    @Override
+    protected void onDestroy() {
+        if (animProgressBar != null) {
+            animProgressBar.cancel();
+        }
+        if (animContentView != null) {
+            animContentView.cancel();
+        }
+        super.onDestroy();
     }
 }

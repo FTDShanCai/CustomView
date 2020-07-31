@@ -13,12 +13,31 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/tv"
+            android:id="@+id/anim_1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="20dp"
             android:textColor="#000"
             android:text="view 淡入淡出"
+            android:textSize="20sp" />
+
+
+        <TextView
+            android:id="@+id/anim_2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="20dp"
+            android:textColor="#000"
+            android:text="属性动画"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/anim_3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="20dp"
+            android:textColor="#000"
+            android:text="fragment切换动画自定义"
             android:textSize="20sp" />
 
     </LinearLayout>
