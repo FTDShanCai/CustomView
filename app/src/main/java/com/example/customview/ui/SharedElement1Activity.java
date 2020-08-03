@@ -145,6 +145,7 @@ public class SharedElement1Activity extends AppCompatActivity {
         public void onBindViewHolder(@NonNull final ViewHolder holder, final int position) {
             final String url = list.get(position);
             Glide.with(SharedElement1Activity.this).load(url).into(holder.iv_img);
+            holder.itemView.setTag("position:" + position);
 
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -170,9 +171,8 @@ public class SharedElement1Activity extends AppCompatActivity {
         }
     }
 
-    @Subscribe(threadMode = ThreadMode.MAIN_ORDERED)
+    @Subscribe(threadMode = ThreadMode.MAIN)
     public void onPageScroll(HashMap<String, Integer> map) {
-        Log.d("ftd", "onPageScroll   " + map.get("index"));
-        recycler_view.getLayoutManager().scrollToPosition(map.get("index"));
+        recycler_view.smoothScrollToPosition(map.get("index"));
     }
 }

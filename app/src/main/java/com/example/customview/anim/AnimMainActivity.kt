@@ -5,10 +5,7 @@ import android.os.Bundle
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.example.customview.R
-import com.example.customview.anim.anim.Anim1Activity
-import com.example.customview.anim.anim.Anim2Activity
-import com.example.customview.anim.anim.Anim3Activity
-import com.example.customview.anim.anim.Anim4Activity
+import com.example.customview.anim.anim.*
 
 class AnimMainActivity : AppCompatActivity() {
 
@@ -23,6 +20,9 @@ class AnimMainActivity : AppCompatActivity() {
     }
     val anim4 by lazy {
         findViewById<TextView>(R.id.anim_4)
+    }
+    val anim5 by lazy {
+        findViewById<TextView>(R.id.anim_5)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -46,6 +46,11 @@ class AnimMainActivity : AppCompatActivity() {
         anim4.apply {
             setOnClickListener {
                 startActivity(Intent(context, Anim4Activity::class.java))
+            }
+        }
+        anim5.apply {
+            setOnClickListener {
+                startActivity(Intent(context, Anim5Activity::class.java))
             }
         }
     }

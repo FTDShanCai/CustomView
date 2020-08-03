@@ -6,10 +6,10 @@ import android.graphics.Path
 import android.os.Build
 import android.os.Bundle
 import android.view.View
-import android.view.animation.LinearInterpolator
-import android.view.animation.PathInterpolator
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
+import androidx.dynamicanimation.animation.DynamicAnimation
+import androidx.dynamicanimation.animation.FlingAnimation
 import com.example.customview.R
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
@@ -26,6 +26,9 @@ class Anim2Activity : AppCompatActivity() {
     }
     val btnIntercept by lazy {
         findViewById<Button>(R.id.btn_intercept)
+    }
+    val btnFling by lazy {
+        findViewById<Button>(R.id.btn_fling)
     }
 
     val btnReset by lazy {
@@ -68,11 +71,20 @@ class Anim2Activity : AppCompatActivity() {
 
             }
         }
+
+        btnFling.setOnClickListener {
+            val anim = FlingAnimation(fab, DynamicAnimation.SCROLL_Y)
+            anim.setStartVelocity(1500f)
+                    .setMinValue(0f)
+                    .setMaxValue(1300f)
+                    .friction = 1.1f
+            anim.start()
+        }
+
         btnReset.setOnClickListener {
             fab.translationX = 0f
             fab.translationY = 0f
         }
     }
-
 
 }
