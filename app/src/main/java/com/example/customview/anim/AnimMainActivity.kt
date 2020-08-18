@@ -6,6 +6,7 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.example.customview.R
 import com.example.customview.anim.anim.*
+import com.example.customview.ui.SharedElement1Activity
 
 class AnimMainActivity : AppCompatActivity() {
 
@@ -23,6 +24,9 @@ class AnimMainActivity : AppCompatActivity() {
     }
     val anim5 by lazy {
         findViewById<TextView>(R.id.anim_5)
+    }
+    val anim6 by lazy {
+        findViewById<TextView>(R.id.anim_6)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -51,6 +55,11 @@ class AnimMainActivity : AppCompatActivity() {
         anim5.apply {
             setOnClickListener {
                 startActivity(Intent(context, Anim5Activity::class.java))
+            }
+        }
+        anim6.apply {
+            setOnClickListener {
+                startActivity(Intent(context, SharedElement1Activity::class.java))
             }
         }
     }
