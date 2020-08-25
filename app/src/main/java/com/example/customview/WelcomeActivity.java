@@ -1,14 +1,21 @@
 package com.example.customview;
 
-import androidx.annotation.IdRes;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 
+import androidx.annotation.IdRes;
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.ddc.guide.prefs.PreferencesManager;
+import com.ddc.guide.shape.Focus;
+import com.ddc.guide.shape.FocusGravity;
+import com.ddc.guide.shape.ShapeType;
+import com.ddc.guide.view.MaterialIntroView;
 import com.example.customview.anim.AnimMainActivity;
 import com.example.customview.lottie.LottieActivity;
+
 
 public class WelcomeActivity extends AppCompatActivity {
 
@@ -44,6 +51,31 @@ public class WelcomeActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(WelcomeActivity.this, AnimMainActivity.class);
                 startActivity(intent);
+            }
+        });
+
+        click(R.id.btn_show, new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                PreferencesManager manager = new PreferencesManager(WelcomeActivity.this);
+                manager.reset("intro_card");
+
+                new MaterialIntroView.Builder(WelcomeActivity.this)
+                        .enableDotAnimation(false)
+                        .enableIcon(true)
+                        .setFocusGravity(FocusGravity.CENTER)
+                        .setFocusType(Focus.MINIMUM)
+                        .setDelayMillis(500)
+                        .setShape(ShapeType.RECTANGLE)
+                        .enableFadeAnimation(true)
+                        .performClick(false)
+                        .setMaskColor(Color.argb(180, 0, 0, 0))
+                        .setTargetPadding(0)
+                        .setInfoText("Hi There! Click this card and see what happens.")
+                        .setTarget(findViewById(R.id.tv_3))
+                        .setUsageId("intro_card") //THIS SHOULD BE UNIQUE ID
+                        .show();
             }
         });
 

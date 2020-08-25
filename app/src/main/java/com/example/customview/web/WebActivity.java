@@ -51,6 +51,7 @@ public class WebActivity extends AppCompatActivity {
                     isLoadFinish = true;
                 }
             }
+
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
                 Log.d("ftd", "shouldOverrideUrlLoading url:" + url);
