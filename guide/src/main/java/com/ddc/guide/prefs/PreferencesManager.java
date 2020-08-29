@@ -16,19 +16,19 @@ public class PreferencesManager {
         sharedPreferences = context.getSharedPreferences(PREFERENCES_NAME, Context.MODE_PRIVATE);
     }
 
-    public boolean isDisplayed(String id){
+    public boolean isDisplayed(String id) {
         return sharedPreferences.getBoolean(id, false);
     }
 
-    public void setDisplayed(String id){
-        sharedPreferences.edit().putBoolean(id,true).apply();
+    public void setDisplayed(String id) {
+        sharedPreferences.edit().putBoolean(id, true).apply();
     }
 
-    public void reset(String id){
+    public void reset(String id) {
         sharedPreferences.edit().putBoolean(id, false).apply();
     }
 
-    public void resetAll(){
+    public void resetAll() {
         sharedPreferences.edit().clear().apply();
     }
 }

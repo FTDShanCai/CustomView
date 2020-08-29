@@ -9,6 +9,7 @@ import androidx.annotation.IdRes;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.ddc.guide.custom.ShapeRenCai;
+import com.ddc.guide.custom.ShapeStudy;
 import com.ddc.guide.prefs.PreferencesManager;
 import com.ddc.guide.shape.GuideView;
 import com.ddc.guide.shape.TargetShape;
@@ -48,16 +49,22 @@ public class WelcomeActivity extends AppCompatActivity {
             PreferencesManager manager = new PreferencesManager(WelcomeActivity.this);
             manager.reset("intro_card");
 
-            GuideView.Builder builder
+            GuideView.Builder builder1
                     = new GuideView.Builder();
-            builder.addTargetShape(new TargetShape.Builder(tv4).setShape(
-                    new ShapeRenCai()).build());
-//            builder.addTargetShape(new TargetShape.Builder(tv3).build());
+            GuideView.Builder builder2
+                    = new GuideView.Builder();
+            builder1.addTargetShape(new TargetShape.Builder(tv4)
+                    .setShape(new ShapeRenCai())
+                    .build());
+            builder2.addTargetShape(new TargetShape.Builder(tv3)
+                    .setShape(new ShapeStudy())
+                    .build());
             new MaterialIntroView.Builder(WelcomeActivity.this)
                     .setDelayMillis(500)
                     .enableFadeAnimation(true)
                     .setMaskColor(Color.argb(180, 0, 0, 0))
-                    .addGuideView(builder.build())
+                    .addGuideView(builder1.build())
+                    .addGuideView(builder2.build())
                     .setUsageId("intro_card") //THIS SHOULD BE UNIQUE ID
                     .show();
         });

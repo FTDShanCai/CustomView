@@ -11,22 +11,15 @@ import android.graphics.PorterDuff;
 import android.graphics.PorterDuffXfermode;
 import android.os.Build;
 import android.os.Handler;
-import android.text.SpannableString;
-import android.text.Spanned;
-import android.text.style.AbsoluteSizeSpan;
 import android.util.AttributeSet;
-import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
-import android.widget.TextView;
 
 import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.constraintlayout.widget.ConstraintSet;
 import androidx.core.view.ViewCompat;
 
-import com.ddc.guide.R;
 import com.ddc.guide.animation.AnimationFactory;
 import com.ddc.guide.animation.AnimationListener;
 import com.ddc.guide.animation.MaterialIntroListener;
@@ -34,7 +27,6 @@ import com.ddc.guide.prefs.PreferencesManager;
 import com.ddc.guide.shape.GuideView;
 import com.ddc.guide.shape.TargetShape;
 import com.ddc.guide.utils.Constants;
-import com.ddc.guide.utils.Utils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -191,7 +183,6 @@ public class MaterialIntroView extends ConstraintLayout {
                 if (isLayoutFinish && !isLayoutCompleted) {
                     isLayoutCompleted = true;
                     post(() -> setViews());
-                    removeOnGlobalLayoutListener(MaterialIntroView.this, this);
                 }
             }
         });
@@ -199,6 +190,7 @@ public class MaterialIntroView extends ConstraintLayout {
     }
 
     private void setViews() {
+        removeAllViews();
         GuideView grGuideView = grGuideViews.get(currentGuidePosition);
         for (TargetShape targetShape : grGuideView.getTargetShapes()) {
             targetShape.initViewShape(this);
@@ -271,6 +263,15 @@ public class MaterialIntroView extends ConstraintLayout {
      * Dismiss Material Intro View
      */
     public void dismiss() {
+        int size = grGuideViews.size();
+        if (currentGuidePosition + 1 != size) {
+            currentGuidePosition++;
+            isLayoutCompleted = false;
+            requestLayout();
+            return;
+        }
+
+
         if (!isIdempotent) {
             preferencesManager.setDisplayed(materialIntroViewId);
         }
