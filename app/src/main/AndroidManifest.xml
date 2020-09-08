@@ -9,7 +9,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
-        android:name=".App"
+        android:name=".hilt.MyHiltApp"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -17,15 +17,19 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".rx.RxActivity">
+        <activity android:name=".hilt.Hilt2Activity"></activity>
+        <activity android:name=".hilt.MyHiltActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
-        <activity android:name=".web.WebActivity">
-
-        </activity>
+        <activity android:name=".rx.RxActivity" />
+        <activity android:name=".web.WebActivity" />
         <activity android:name=".files.FileActivity" />
         <activity android:name=".oom.OomNextActivity" />
-        <activity android:name=".oom.OomTestActivity"></activity>
+        <activity android:name=".oom.OomTestActivity" />
         <activity android:name=".anim.anim.Anim5Activity" />
         <activity android:name=".anim.anim.Anim4Activity" />
         <activity android:name=".anim.anim.Anim3Activity" />
@@ -36,13 +40,7 @@
         <activity android:name=".motionlayout.Motion2Activity" />
         <activity android:name=".motionlayout.Motion1Activity" />
         <activity android:name=".NewActivity" />
-        <activity android:name=".WelcomeActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+        <activity android:name=".WelcomeActivity"></activity>
         <activity android:name=".test.CActivity" />
         <activity android:name=".test.BActivity" />
         <activity android:name=".test.AActivity" />
