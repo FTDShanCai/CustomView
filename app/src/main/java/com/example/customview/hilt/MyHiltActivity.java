@@ -23,7 +23,6 @@ public class MyHiltActivity extends AppCompatActivity {
 //    @Inject
 //    Tools tools;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,7 +31,11 @@ public class MyHiltActivity extends AppCompatActivity {
         findViewById(R.id.btn_jump).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MyHiltActivity.this, Hilt2Activity.class));
+                Integer  integer = Integer.valueOf(10000);
+                long integer1 = integer;
+                Log.d("ftd", "total:" + integer1);
+
+//                startActivity(new Intent(MyHiltActivity.this, Hilt2Activity.class));
             }
         });
     }

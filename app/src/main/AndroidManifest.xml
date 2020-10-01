@@ -19,13 +19,15 @@
         android:usesCleartextTraffic="true">
         <activity android:name=".hilt.Hilt2Activity"></activity>
         <activity android:name=".hilt.MyHiltActivity">
+
+        </activity>
+        <activity android:name=".rx.RxActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".rx.RxActivity" />
         <activity android:name=".web.WebActivity" />
         <activity android:name=".files.FileActivity" />
         <activity android:name=".oom.OomNextActivity" />

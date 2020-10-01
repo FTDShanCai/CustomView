@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.customview.R;
 
 import java.util.concurrent.Callable;
+import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 import io.reactivex.Observable;
@@ -34,13 +35,85 @@ public class RxActivity extends AppCompatActivity {
         setContentView(R.layout.activity_rx);
         btn_retry = findViewById(R.id.btn_retry);
 
-        btn_retry.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                getData();
-            }
+        btn_retry.setOnClickListener(v -> {
+//                getData();
+            upLoadSingleData();
         });
     }
+
+    int count = 0;
+
+    private void upLoadSingleData() {
+        MyUpLoadData myUpLoadData = new MyUpLoadData();
+        myUpLoadData.state = 0;
+        myUpLoadData.data = count + "";
+        count++;
+        Observable.just(myUpLoadData)
+                .map(data -> {
+                    Thread.sleep(1000);
+                    myUpLoadData.state = MyUpLoadData.upload_ing;
+                    return data;
+                })
+                .subscribeOn(Schedulers.single())
+                .observeOn(Schedulers.single())
+                .doOnSubscribe(disposable -> Log.d("ftd", "doOnSubscribe:" + myUpLoadData.data))
+                .doOnComplete(() -> Log.d("ftd", "doOnComplete:" + myUpLoadData.data))
+                .doFinally(() -> Log.d("ftd", "doFinally:" + myUpLoadData.data))
+                .safeSubscribe(new Observer<MyUpLoadData>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(MyUpLoadData s) {
+                        try {
+                            onGoNext(s);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
+    }
+
+    private void onGoNext(MyUpLoadData myUpLoadData) throws InterruptedException {
+        Observable.just(myUpLoadData)
+                .delay(1000, TimeUnit.MILLISECONDS)
+                .subscribeOn(Schedulers.single())
+                .observeOn(Schedulers.single())
+                .safeSubscribe(new Observer<MyUpLoadData>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(MyUpLoadData myUpLoadData) {
+                        Log.d("ftd", "onNext:" + myUpLoadData.data);
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
+    }
+
 
     private AtomicBoolean mRefreshing = new AtomicBoolean(false);
     private Observable<String> stringObservable = Observable.create(new ObservableOnSubscribe<String>() {
