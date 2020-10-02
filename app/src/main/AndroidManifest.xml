@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.example.customview">
 
     <uses-feature
@@ -16,17 +17,19 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-        android:usesCleartextTraffic="true">
-        <activity android:name=".hilt.Hilt2Activity"></activity>
-        <activity android:name=".hilt.MyHiltActivity">
-
-        </activity>
-        <activity android:name=".rx.RxActivity">
+        android:usesCleartextTraffic="true"
+        tools:targetApi="m">
+        <activity android:name=".jetpack.wan.main.WanMainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity android:name=".hilt.Hilt2Activity" />
+        <activity android:name=".hilt.MyHiltActivity" />
+        <activity android:name=".rx.RxActivity">
+
         </activity>
         <activity android:name=".web.WebActivity" />
         <activity android:name=".files.FileActivity" />
@@ -42,7 +45,7 @@
         <activity android:name=".motionlayout.Motion2Activity" />
         <activity android:name=".motionlayout.Motion1Activity" />
         <activity android:name=".NewActivity" />
-        <activity android:name=".WelcomeActivity"></activity>
+        <activity android:name=".WelcomeActivity" />
         <activity android:name=".test.CActivity" />
         <activity android:name=".test.BActivity" />
         <activity android:name=".test.AActivity" />
