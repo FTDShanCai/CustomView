@@ -19,18 +19,19 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:targetApi="m">
-        <activity android:name=".jetpack.wan.main.WanMainActivity">
+        <activity android:name=".asyncLayoutInFlater.AsynInflaterActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".hilt.Hilt2Activity" />
-        <activity android:name=".hilt.MyHiltActivity" />
-        <activity android:name=".rx.RxActivity">
+        <activity android:name=".jetpack.wan.main.WanMainActivity">
 
         </activity>
+        <activity android:name=".hilt.Hilt2Activity" />
+        <activity android:name=".hilt.MyHiltActivity" />
+        <activity android:name=".rx.RxActivity"></activity>
         <activity android:name=".web.WebActivity" />
         <activity android:name=".files.FileActivity" />
         <activity android:name=".oom.OomNextActivity" />

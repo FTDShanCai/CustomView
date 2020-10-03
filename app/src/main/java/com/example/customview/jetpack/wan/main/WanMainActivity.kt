@@ -6,9 +6,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.Observer
-import androidx.lifecycle.Transformations
-import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.*
 import com.example.customview.R
 
 class WanMainActivity : AppCompatActivity() {
@@ -30,14 +28,26 @@ class WanMainActivity : AppCompatActivity() {
     }
 
     private val viewModel by lazy {
-        ViewModelProvider.AndroidViewModelFactory.getInstance(application)
-                .create(GoodsViewModel::class.java)
+        ViewModelProvider(this)
+                .get(GoodsViewModel::class.java)
+    }
+
+    private val viewModel2 by lazy {
+        ViewModelProvider(this)
+                .get(GoodsViewModel::class.java)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_wan_main)
 
+//        goodSet()
+        mediatorSet()
+
+        Log.d("ftd", "hasCode:${viewModel.hashCode()}       :${viewModel2.hashCode()}")
+    }
+
+    private fun goodSet() {
         Transformations.map(viewModel.goods) {
             it.count
         }.observe(this, Observer {
@@ -60,6 +70,37 @@ class WanMainActivity : AppCompatActivity() {
             val input = etInput.text.toString()
             viewModel.setGoodsName(input)
         }
-
     }
+
+
+    val count = MutableLiveData<Long>()
+
+    val name = MutableLiveData<String>()
+
+    val mediator = MediatorLiveData<String>()
+
+    private fun mediatorSet() {
+
+        mediator.addSource(count) {
+            Log.d("ftd", "count changed:$it")
+            tvCount.text = it.toString()
+        }
+        mediator.addSource(name) {
+            Log.d("ftd", "name changed:$it")
+            tvName.text = it.toString()
+        }
+        mediator.observe(this, Observer {
+            Log.d("ftd", "mediator changed:$it")
+        })
+
+        btnAdd.setOnClickListener {
+            count.postValue(System.currentTimeMillis())
+        }
+
+        btnSubmit.setOnClickListener {
+            val input = etInput.text.toString()
+            name.postValue(input)
+        }
+    }
+
 }

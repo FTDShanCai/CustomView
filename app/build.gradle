@@ -95,6 +95,9 @@ dependencies {
     implementation 'com.google.code.gson:gson:2.8.5'
     implementation 'com.squareup.retrofit2:converter-gson:2.6.2'//转换器，请求结果转换成Model
     implementation 'com.squareup.retrofit2:adapter-rxjava2:2.6.2'//配合Rxjava 使用
+
+    //异步加载布局
+    implementation "androidx.asynclayoutinflater:asynclayoutinflater:1.0.0"
 }
 repositories {
     mavenCentral()
