@@ -17,6 +17,6 @@ import retrofit2.http.Path
 interface WanApi {
 
     @GET("/article/list/{page}/json")
-    fun getArticle(@Path("page") page: Int): WanBaseResponse<List<ArticleBean>>
+    fun getArticle(@Path("page") page: Int): Observable<WanBaseResponse<List<ArticleBean>>>
 
 }

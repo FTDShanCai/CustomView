@@ -1,6 +1,8 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'com.huawei.agconnect'
 apply plugin: 'dagger.hilt.android.plugin'
 
 android {
@@ -28,6 +30,7 @@ android {
 }
 
 dependencies {
+    implementation project(path: ':rx2cache_adapter')
     def lifecycle_version = "2.2.0"
 
     implementation fileTree(dir: 'libs', include: ['*.jar'])
@@ -98,6 +101,8 @@ dependencies {
 
     //异步加载布局
     implementation "androidx.asynclayoutinflater:asynclayoutinflater:1.0.0"
+
+    implementation 'com.huawei.hms:push:5.0.2.300'
 }
 repositories {
     mavenCentral()
