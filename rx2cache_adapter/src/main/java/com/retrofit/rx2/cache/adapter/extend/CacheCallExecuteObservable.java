@@ -1,5 +1,7 @@
 package com.retrofit.rx2.cache.adapter.extend;
 
+import android.util.Log;
+
 import io.reactivex.Observable;
 import io.reactivex.Observer;
 import io.reactivex.disposables.Disposable;
@@ -54,7 +56,7 @@ public final class CacheCallExecuteObservable<T> extends Observable<Response<T>>
         }
 
         if (isCacheOver) return;//缓存可用
-
+        Log.d("ftd","缓存不可用");
         boolean terminated = false;
         try {
             Response<T> response = call.execute();

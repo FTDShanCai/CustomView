@@ -20,11 +20,7 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="m">
         <activity android:name=".cache.test.CacheActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".pip.PipActivity"
@@ -54,7 +50,14 @@
         <activity android:name=".motionlayout.Motion2Activity" />
         <activity android:name=".motionlayout.Motion1Activity" />
         <activity android:name=".NewActivity" />
-        <activity android:name=".WelcomeActivity" />
+        <activity android:name=".WelcomeActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+        </activity>
         <activity android:name=".test.CActivity" />
         <activity android:name=".test.BActivity" />
         <activity android:name=".test.AActivity" />

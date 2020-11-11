@@ -1,9 +1,5 @@
 package com.ddc.guide.shape;
 
-import android.view.ViewGroup;
-
-import androidx.constraintlayout.widget.ConstraintSet;
-
 import com.ddc.guide.view.MaterialIntroView;
 
 /**

@@ -27,10 +27,38 @@ public class CacheActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cache);
         findViewById(R.id.btn).setOnClickListener(v -> test());
+        findViewById(R.id.btn1).setOnClickListener(v -> test1());
     }
 
     private void test() {
         ApiFactory.Companion.getInstance().create(WanApi.class).getArticle(1).
+                subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<WanBaseResponse<List<ArticleBean>>>() {
+                    @Override
+                    public void onSubscribe(@NonNull Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(@NonNull WanBaseResponse<List<ArticleBean>> listWanBaseResponse) {
+                        Log.d("ftd", "onNext");
+                    }
+
+                    @Override
+                    public void onError(@NonNull Throwable e) {
+                        Log.d("ftd", "onError");
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
+    }
+
+    private void test1() {
+        ApiFactory.Companion.getInstance().create(WanApi.class).getArticle1(1).
                 subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<WanBaseResponse<List<ArticleBean>>>() {
