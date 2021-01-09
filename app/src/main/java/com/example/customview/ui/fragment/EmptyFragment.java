@@ -2,6 +2,7 @@ package com.example.customview.ui.fragment;
 
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,7 +12,8 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
+
+import com.example.customview.google.fragment.BaseLazyFragment;
 
 import java.util.Random;
 
@@ -23,7 +25,10 @@ import java.util.Random;
  * description:xxx
  * ******************************
  */
-public class EmptyFragment extends Fragment {
+public class EmptyFragment extends BaseLazyFragment {
+
+    String tag = "";
+
     public static EmptyFragment newInstance(String text) {
         Bundle args = new Bundle();
         args.putString("text", text);
@@ -42,6 +47,7 @@ public class EmptyFragment extends Fragment {
         TextView textView = new TextView(requireContext());
         textView.setTextSize(30);
         textView.setGravity(Gravity.CENTER);
+        tag = getArguments().getString("text");
         textView.setText(getArguments() == null ? "null" : getArguments().getString("text"));
         frameLayout.addView(textView);
         FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) textView.getLayoutParams();
@@ -49,5 +55,35 @@ public class EmptyFragment extends Fragment {
         layoutParams.width = -1;
         layoutParams.height = -1;
         return frameLayout;
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        Log.d("ftd", tag + "  onCreate");
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        Log.d("ftd", tag + "  onStart");
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        Log.d("ftd", tag + "  onResume");
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        Log.d("ftd", tag + "  onPause");
+    }
+
+    @Override
+    protected void lazyLoad() {
+        super.lazyLoad();
+        Log.d("ftd", tag + "     lazyLoad");
     }
 }

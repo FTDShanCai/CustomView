@@ -30,6 +30,7 @@ public class WelcomeActivity extends AppCompatActivity {
         click(R.id.tv_1, v -> {
             Intent intent = new Intent(WelcomeActivity.this, MainActivity.class);
             startActivity(intent);
+            overridePendingTransition(R.anim.splash_anim_pop_in, R.anim.splash_anim_pop_out);
         });
         click(R.id.tv_2, v -> {
             Intent intent = new Intent(WelcomeActivity.this, NewActivity.class);

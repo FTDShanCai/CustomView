@@ -8,6 +8,7 @@ import android.view.WindowManager;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.widget.NestedScrollView;
 
+import com.demo.apt_annotation.WxPayAuto;
 import com.example.customview.test.AActivity;
 import com.example.customview.ui.BehaviorActivity;
 import com.example.customview.ui.ConstraintLayoutActivity;
@@ -32,15 +33,17 @@ import com.example.customview.ui.View8Activity;
 import com.example.customview.ui.opengl.OpenGlActivity;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-public class MainActivity extends AppCompatActivity {
+import dagger.hilt.android.scopes.ActivityScoped;
 
+
+@WxPayAuto("com.example.customview")
+public class MainActivity extends AppCompatActivity {
     NestedScrollView scroll_view;
     FloatingActionButton fab;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_main);
         scroll_view = findViewById(R.id.scroll_view);
         fab = findViewById(R.id.fab);

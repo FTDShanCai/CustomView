@@ -40,6 +40,7 @@
                 android:layout_height="wrap_content"
                 android:padding="15dp"
                 android:text="贝塞尔曲线"
+                android:maxLength="3"
                 android:textColor="#000" />
 
             <TextView

@@ -30,6 +30,7 @@ import java.util.Map;
 public class SharedElement1Activity extends AppCompatActivity {
 
     RecyclerView recycler_view;
+    View iView;
 
     ArrayList<String> list = new ArrayList<>();
 
@@ -48,6 +49,7 @@ public class SharedElement1Activity extends AppCompatActivity {
         setContentView(R.layout.activity_shared_element1);
         EventBus.getDefault().register(this);
         recycler_view = findViewById(R.id.recycler_view);
+        iView= findViewById(R.id.iView);
         initImgs();
         adapter = new MyImgsAdapter();
         gridLayoutManager = new GridLayoutManager(this, 3);
