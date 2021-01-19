@@ -51,7 +51,8 @@ public class AbilityMapView extends View implements NestedScrollingParent {
     private int intervalCount; //间隔数量，就把半径分为几段
     private float angle; //两条顶点到中线点的线之间的角度
     private Paint linePaint; //画线的笔
-    private Paint textPaint; //画文字的笔
+    //画文字的笔
+    private Paint textPaint;
     private int viewHeight; //控件宽度
     private int viewWidth; //控件高度
     private ArrayList<ArrayList<PointF>> pointsArrayList; //存储多边形顶点数组的数组

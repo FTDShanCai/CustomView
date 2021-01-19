@@ -26,7 +26,6 @@
                 android:scaleY="2"
                 motion:framePosition="60"
                 motion:motionTarget="@id/mView" />
-
         </KeyFrameSet>
 
     </Transition>
